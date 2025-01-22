@@ -1,5 +1,6 @@
 package me.elordenador.practica6;
 
+import javax.swing.text.Element;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -127,8 +128,11 @@ public class Dispositivo {
         // TODO: Implementar función load.
         try {
             randomAccessFile.seek(108 * id);
+            if (randomAccessFile.getFilePointer() >= randomAccessFile.length()) {
+                throw new ElementNotFoundException("Device not found", false);
+            }
         } catch (IOException e) {
-            throw new ElementNotFoundException("Device not found", false);
+            System.err.println("Error al cargar el archivo");
         }
 
         try {

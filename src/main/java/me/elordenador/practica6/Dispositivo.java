@@ -89,7 +89,6 @@ public class Dispositivo {
     }
 
     public void save() {
-        // TODO: Implementar función save.
         try {
             randomAccessFile.seek(108 * id);
         } catch (IOException e) {
@@ -157,6 +156,33 @@ public class Dispositivo {
 
     public void delete() {
         // TODO: Implementar función delete.
+        try {
+            randomAccessFile.seek(id*108);
+
+            randomAccessFile.writeInt(id);
+
+            long posIni = randomAccessFile.getFilePointer();
+            randomAccessFile.writeUTF(marca);
+            long posFin = randomAccessFile.getFilePointer();
+            long bytesEscritos = posFin - posIni;
+            for (int j = 0; j < 50-bytesEscritos; j++) {
+                randomAccessFile.writeByte(0);
+            }
+
+            posIni = randomAccessFile.getFilePointer();
+            randomAccessFile.writeUTF(modelo);
+            posFin = randomAccessFile.getFilePointer();
+            bytesEscritos = posFin - posIni;
+            for (int i = 0; i < 50-bytesEscritos; i++) {
+                randomAccessFile.writeByte(0);
+            }
+
+            randomAccessFile.writeBoolean(estado);
+
+            randomAccessFile.writeBoolean(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String toString() {

@@ -1,6 +1,5 @@
 package me.elordenador.practica6;
 
-import javax.swing.text.Element;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;

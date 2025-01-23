@@ -28,7 +28,6 @@ public class DispositivoTest {
     private String[] modelos = {"Modelo1","Modelo2","Modelo3","Modelo4","Modelo5","Modelo6"};
     @BeforeAll
     public static void setupFile() {
-        System.out.println("> Initializing File... (dispositivos.dat)");
         Dispositivo.init();
     }
 
@@ -36,7 +35,6 @@ public class DispositivoTest {
     @Order(1)
     @Test
     public void generateData() {
-        System.out.println("> Starting to save all data...");
         for (String marca : marcas) {
             for (String modelo : modelos) {
                 Dispositivo dispositivo = new Dispositivo(marca, modelo, true);
@@ -45,13 +43,12 @@ public class DispositivoTest {
                 modeloTArrayList.add(new ModeloT(dispositivo.getId(), dispositivo.getMarca(), dispositivo.getModelo()));
             }
         }
-        System.out.println("> Data saved to device and all models written saved to a list for the third test.");
+
     }
 
     @Order(2)
     @Test
     public void readData() {
-        System.out.println("> Reading data...");
         int position = 0;
         boolean salida = false;
         while (!salida) {
@@ -68,12 +65,10 @@ public class DispositivoTest {
 
 
         }
-        System.out.println("> Data readed successfully");
     }
     @Order(3)
     @Test
     public void checkData() throws ElementNotFoundException {
-        System.out.println("> Veryfing Data...");
         int elementos = modeloTArrayList.size();
         for (int i = 0; i < elementos; i++) {
             int id = i + 1;
@@ -87,13 +82,44 @@ public class DispositivoTest {
             assertEquals(modelo.modelo, modeloGenerado.getModelo(), "The Device model (" + modeloGenerado.getModelo() + ") isn't the same as the one we generated earlier ("+modelo.modelo+").");
 
         }
-        System.out.println("> Data Verified");
+    }
+
+    @Order(4)
+    @Test
+    public void deleteData() {
+        int elementos = modeloTArrayList.size();
+        for (int i = 0; i < elementos; i++) {
+            int id = i + 1;
+            Dispositivo dispositivo = new Dispositivo(id);
+            dispositivo.delete();
+        }
+    }
+
+    @Order(5)
+    @Test
+    public void checkDataDoesNoLongerExists() {
+        int elementos = modeloTArrayList.size();
+        for (int i = 0; i < elementos; i++) {
+            int id = i + 1;
+            Dispositivo modeloGenerado = new Dispositivo(id);
+            ModeloT modelo = modeloTArrayList.get(i);
+            boolean failed = false;
+
+            // Conseguir datos
+            try {
+                modeloGenerado.load();
+            } catch (ElementNotFoundException e) {
+                failed = true;
+                assertEquals(true, e.logicaldelete, "SO data doesn't exists phisically.");
+            }
+
+                assertEquals(true, failed, "No errors found, but we expect those errors. Test Failed");
+
+        }
     }
 
     @AfterAll
     public static void finish() {
-        System.out.println("SUCCESS");
-        System.out.println("Cleaning up...");
         File file = new File("dispositivos.dat");
         file.delete();
     }

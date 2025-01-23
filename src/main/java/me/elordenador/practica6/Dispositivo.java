@@ -30,7 +30,6 @@ public class Dispositivo {
     }
 
     public Dispositivo(String marca, String modelo, boolean estado) {
-        // TODO: Agregar el auto-increment version falsa
 
         try {
             randomAccessFile.seek(0);

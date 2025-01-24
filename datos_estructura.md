@@ -10,6 +10,8 @@
 | Estado   | Boolean     | 1 Byte        |
 | Borrado  | Boolean     | 1 Byte        |
 
+Nº Bytes: **106**
+
 ## Ordenador
 
 | Campo      | Tipo Valor | Peso          |
@@ -23,3 +25,5 @@
 | Procesador | String     | 50 Caracteres |
 | tamDisco   | Integer    | 4 Bytes       |
 | Disco      | String     | 10 Caracteres |
+
+Nº de Bytes: **174**

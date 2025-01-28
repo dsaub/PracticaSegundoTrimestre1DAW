@@ -22,6 +22,13 @@ public class Ordenador extends Dispositivo {
         this.tamDisco = tamDisco;
         this.tipoDisco = disco;
 
+        try {
+            randomAccessFile.seek(randomAccessFile.length() - nBytesT);
+            id = randomAccessFile.readInt() + 1;
+        } catch (IOException e) {
+            id = 0;
+        }
+
     }
     public static void init() {
         if (!file.exists()) {
@@ -41,32 +48,6 @@ public class Ordenador extends Dispositivo {
 
     public Ordenador(int id) {
         super(id);
-
-        try {
-            randomAccessFile.seek(0);
-        } catch (IOException e) {
-            System.err.println("Ha ocurrido un error");
-        }
-        int posContador = 0;
-        boolean salida = false;
-        while (!salida) {
-            try {
-                randomAccessFile.seek(posContador * 108);
-            } catch (IOException e) {
-                System.err.println("Ha ocurrido un error");
-                salida = true;
-            }
-
-            try {
-                id = randomAccessFile.readInt() + 1;
-            } catch (IOException e) {
-                salida = true;
-            }
-            posContador++;
-
-        }
-        
-        this.id = id;
     }
 
     public int getRam() {
@@ -87,12 +68,16 @@ public class Ordenador extends Dispositivo {
 
     public void save() {
         try {
+
+            System.out.println("Saving ID: " + id);
             randomAccessFile.seek(nBytesT * id);
         } catch (IOException e) {
             System.out.println("El registro no existe, creando...");
 
         }
         try {
+            long posIniF = randomAccessFile.getFilePointer();
+
             randomAccessFile.writeInt(id);
 
             long posIni = randomAccessFile.getFilePointer();
@@ -131,9 +116,13 @@ public class Ordenador extends Dispositivo {
             randomAccessFile.writeUTF(tipoDisco.name());
             posFin = randomAccessFile.getFilePointer();
             bytesEscritos = posFin - posIni;
-            for (int i = 0; i < 50-bytesEscritos; i++) {
+            for (int i = 0; i < 10-bytesEscritos; i++) {
                 randomAccessFile.writeByte(0);
             }
+
+            long posFinal = randomAccessFile.getFilePointer();
+
+            System.out.println("Escritos " + (posFinal - posIniF) + " bytes.");
         } catch (IOException ex) {
             System.err.print("NO hemos podido escribir la info");
         }

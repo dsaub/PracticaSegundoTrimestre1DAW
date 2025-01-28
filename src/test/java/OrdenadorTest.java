@@ -2,6 +2,8 @@ import me.elordenador.practica6.Disco;
 import me.elordenador.practica6.Ordenador;
 import org.junit.jupiter.api.*;
 
+import java.io.File;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrdenadorTest {
 
@@ -38,6 +40,15 @@ public class OrdenadorTest {
             }
         }
 
+    }
+
+    @AfterAll
+    public static void finish() {
+        /*
+        File file = new File("ordenadores.dat");
+        file.delete();
+
+         */
     }
 
 }

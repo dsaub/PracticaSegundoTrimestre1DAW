@@ -128,4 +128,40 @@ public class Ordenador extends Dispositivo {
         }
 
     }
+
+    public void load() throws ElementNotFoundException {
+        try {
+            randomAccessFile.seek(id * nBytesT);
+
+            id = randomAccessFile.readInt();
+
+            long pos = randomAccessFile.getFilePointer();
+            setMarca(randomAccessFile.readUTF());
+            randomAccessFile.seek(pos + 50);
+
+            pos = randomAccessFile.getFilePointer();
+            setModelo(randomAccessFile.readUTF());
+            randomAccessFile.seek(pos + 50);
+
+            setEstado(randomAccessFile.readBoolean());
+
+            boolean borrado = randomAccessFile.readBoolean();
+            if (borrado) {
+                throw new ElementNotFoundException("Element not found", true);
+            }
+
+            ram = randomAccessFile.readInt();
+
+            pos = randomAccessFile.getFilePointer();
+            procesador = randomAccessFile.readUTF();
+            randomAccessFile.seek(pos + 50);
+
+            tamDisco = randomAccessFile.readInt();
+            pos = randomAccessFile.getFilePointer();
+            tipoDisco = Disco.valueOf(randomAccessFile.readUTF());
+            randomAccessFile.seek(pos + 10);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

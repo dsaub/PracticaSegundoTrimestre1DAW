@@ -155,6 +155,18 @@ public class Impresora extends Dispositivo {
         } catch (IOException e) {
             System.err.println("Hubo un error al leer el archivo");
         }
+
+
+    }
+
+    public String toString() {
+        String estado1;
+        if (getEstado()) {
+            estado1 = "Funciona";
+        } else {
+            estado1 = "No funciona";
+        }
+        return "Marca: " + getMarca() + ", Modelo: " + getModelo() + ", Estado: " + estado1 + ", Tipo: " + tipo.name() + ", Color: " + color + ", Scanner: " + escaner;
     }
 
 

@@ -189,11 +189,12 @@ public class Dispositivo {
     public String toString() {
         String estado1;
         if (estado) {
-            estado1 = "Sí";
+            estado1 = "Funciona";
         } else {
-            estado1 = "No";
+            estado1 = "No funciona";
         }
-        return "{id=" + id + ", marca=\"" + marca + "\", modelo=\"" + modelo + "\", estado=" + estado1 + "}";
+        return "Marca: " + marca + ", Modelo: " + modelo + ", Estado: " + estado;
     }
+
 
 }

@@ -162,5 +162,17 @@ public class Ordenador extends Dispositivo {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
+    }
+
+    public String toString() {
+        String estado1;
+        if (getEstado()) {
+            estado1 = "Funciona";
+        } else {
+            estado1 = "No funciona";
+        }
+        return "Marca: " + getMarca() + ", Modelo: " + getModelo() + ", Estado: " + getEstado() + ", RAM: " + ram + ", Procesador: " + procesador + ", Tamaño Disco: " + tamDisco + "Tipo Disco: " + tipoDisco.name();
     }
 }

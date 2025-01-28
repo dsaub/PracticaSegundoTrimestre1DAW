@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class Ordenador extends Dispositivo {
-    private int id;
     private int ram;
     private String procesador;
     private int tamDisco;

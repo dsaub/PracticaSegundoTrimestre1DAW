@@ -8,9 +8,11 @@ import java.io.File;
 public class Dispositivo {
     private static File file = new File("dispositivos.dat");
     private static RandomAccessFile randomAccessFile;
-    private int id;
+    protected int id;
     private String marca, modelo;
     private boolean estado;
+
+    private int nBytesT = 106;
 
     public static void init() {
         if (!file.exists()) {
@@ -35,23 +37,12 @@ public class Dispositivo {
         } catch (IOException e) {
             System.err.println("Ha ocurrido un error");
         }
-        int posContador = 0;
-        boolean salida = false;
-        while (!salida) {
-            try {
-                randomAccessFile.seek(posContador * 108);
-            } catch (IOException e) {
-                System.err.println("Ha ocurrido un error");
-                salida = true;
-            }
 
-            try {
-                id = randomAccessFile.readInt() + 1;
-            } catch (IOException e) {
-                salida = true;
-            }
-            posContador++;
-
+        try {
+            randomAccessFile.seek(randomAccessFile.length() - nBytesT);
+            id = randomAccessFile.readInt() + 1;
+        } catch (IOException e) {
+            id = 0;
         }
 
         this.marca = marca;

@@ -122,5 +122,40 @@ public class Impresora extends Dispositivo {
         }
     }
 
+    public void load() throws ElementNotFoundException {
+        long pos;
+        try {
+            randomAccessFile.seek(nBytesT * id);
+            id = randomAccessFile.readInt();
+
+            pos = randomAccessFile.getFilePointer();
+            setMarca(randomAccessFile.readUTF());
+            randomAccessFile.seek(pos + 50);
+
+            pos = randomAccessFile.getFilePointer();
+            setModelo(randomAccessFile.readUTF());
+            randomAccessFile.seek(pos + 50);
+
+            setEstado(randomAccessFile.readBoolean());
+
+            boolean borrado = randomAccessFile.readBoolean();
+            if (borrado) {
+                throw new ElementNotFoundException("Element not found", true);
+            }
+
+            pos = randomAccessFile.getFilePointer();
+            tipo = TipoImpresora.valueOf(randomAccessFile.readUTF());
+            randomAccessFile.seek(pos + 10);
+
+            color = randomAccessFile.readBoolean();
+
+            escaner = randomAccessFile.readBoolean();
+
+
+        } catch (IOException e) {
+            System.err.println("Hubo un error al leer el archivo");
+        }
+    }
+
 
 }

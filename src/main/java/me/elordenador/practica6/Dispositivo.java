@@ -86,6 +86,18 @@ public class Dispositivo {
         return estado;
     }
 
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public void save() {
         try {
             randomAccessFile.seek(108 * id);

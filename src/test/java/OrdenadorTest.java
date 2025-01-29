@@ -32,7 +32,13 @@ public class OrdenadorTest {
     }
 
     private ArrayList<SaveOrdenador> ordenadoresGuardados = new ArrayList<>();
+
     @Order(1)
+    @Test
+    public void testInitialize() {
+        Ordenador.init();
+    }
+    @Order(2)
     @Test
     public void testAddData() {
         for (String marca : marcas) {
@@ -64,7 +70,7 @@ public class OrdenadorTest {
 
     }
 
-    @Order(2)
+    @Order(3)
     @DisplayName("Validate data")
     @Test
     public void testValidateData() throws ElementNotFoundException {
@@ -85,11 +91,11 @@ public class OrdenadorTest {
 
     @AfterAll
     public static void afterAll() {
-        /*
+
         File file = new File("ordenadores.dat");
         file.delete();
 
-         */
+
     }
 
 }

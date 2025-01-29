@@ -27,12 +27,16 @@ public class DispositivoTest {
     private String[] marcas = {"LG", "Samsung", "HP", "Lenovo", "Dell", "Asus", "Acer"};
     private String[] modelos = {"Modelo1","Modelo2","Modelo3","Modelo4","Modelo5","Modelo6"};
     @BeforeAll
-    public static void beforeAll() {
+    public static void begin() {
         Dispositivo.init();
     }
 
-
     @Order(1)
+    @Test
+    public void testInitialize() {
+        Dispositivo.init();
+    }
+    @Order(2)
     @Test
     public void testGenerateData() {
         for (String marca : marcas) {
@@ -46,7 +50,7 @@ public class DispositivoTest {
 
     }
 
-    @Order(2)
+    @Order(3)
     @Test
     public void testReadData() {
         int position = 0;
@@ -66,7 +70,7 @@ public class DispositivoTest {
 
         }
     }
-    @Order(3)
+    @Order(4)
     @Test
     public void testCheckData() throws ElementNotFoundException {
         int elementos = modeloTArrayList.size();
@@ -84,7 +88,7 @@ public class DispositivoTest {
         }
     }
 
-    @Order(4)
+    @Order(5)
     @Test
     public void testDeleteData() {
         int elementos = modeloTArrayList.size();
@@ -95,7 +99,7 @@ public class DispositivoTest {
         }
     }
 
-    @Order(5)
+    @Order(6)
     @Test
     public void testCheckDataDoesNoLongerExists() {
         int elementos = modeloTArrayList.size();
@@ -119,7 +123,7 @@ public class DispositivoTest {
     }
 
     @AfterAll
-    public static void afterAll() {
+    public static void finish() {
         File file = new File("dispositivos.dat");
         file.delete();
     }

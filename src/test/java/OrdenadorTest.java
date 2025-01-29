@@ -18,11 +18,12 @@ public class OrdenadorTest {
     private String[] procesadores = {"Intel Core i3-12300", "Intel Core i3-12300K", "Intel Core i5-12500", "Intel Core i5-12500K", "Intel Core i7-12700", "Intel Core i7-12700K", "Intel Core i9-12900", "Intel Core i9-12900K"};
     private int[] tamDiscos = {16, 32, 64, 128, 256, 512, 1024, 2048, 4096};
     private Disco[] tipoDiscos = {Disco.HDD, Disco.SSD_SATA, Disco.SSD_NVME};
+    /*
     @BeforeAll
     public static void beforeAll() {
         Ordenador.init();
     }
-
+    */
 
     private class SaveOrdenador {
         public String marca, modelo, procesador;

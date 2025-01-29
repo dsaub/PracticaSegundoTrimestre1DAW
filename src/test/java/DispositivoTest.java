@@ -26,10 +26,13 @@ public class DispositivoTest {
 
     private String[] marcas = {"LG", "Samsung", "HP", "Lenovo", "Dell", "Asus", "Acer"};
     private String[] modelos = {"Modelo1","Modelo2","Modelo3","Modelo4","Modelo5","Modelo6"};
+
+    /*
     @BeforeAll
     public static void begin() {
         Dispositivo.init();
     }
+    */
 
     @Order(1)
     @Test
@@ -75,8 +78,7 @@ public class DispositivoTest {
     public void testCheckData() throws ElementNotFoundException {
         int elementos = modeloTArrayList.size();
         for (int i = 0; i < elementos; i++) {
-            int id = i + 1;
-            Dispositivo modeloGenerado = new Dispositivo(id);
+            Dispositivo modeloGenerado = new Dispositivo(i);
             ModeloT modelo = modeloTArrayList.get(i);
 
             // Conseguir datos

@@ -27,7 +27,7 @@ public class DispositivoTest {
     private String[] marcas = {"LG", "Samsung", "HP", "Lenovo", "Dell", "Asus", "Acer"};
     private String[] modelos = {"Modelo1","Modelo2","Modelo3","Modelo4","Modelo5","Modelo6"};
     @BeforeAll
-    public static void setupFile() {
+    public static void testSetupFile() {
         Dispositivo.init();
     }
 
@@ -119,7 +119,7 @@ public class DispositivoTest {
     }
 
     @AfterAll
-    public static void finish() {
+    public static void testFinish() {
         File file = new File("dispositivos.dat");
         file.delete();
     }

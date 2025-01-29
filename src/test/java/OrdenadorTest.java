@@ -19,7 +19,7 @@ public class OrdenadorTest {
     private int[] tamDiscos = {16, 32, 64, 128, 256, 512, 1024, 2048, 4096};
     private Disco[] tipoDiscos = {Disco.HDD, Disco.SSD_SATA, Disco.SSD_NVME};
     @BeforeAll
-    public static void setup() {
+    public static void testSetup() {
         Ordenador.init();
     }
 
@@ -84,7 +84,7 @@ public class OrdenadorTest {
 
 
     @AfterAll
-    public static void finish() {
+    public static void testFinish() {
         /*
         File file = new File("ordenadores.dat");
         file.delete();

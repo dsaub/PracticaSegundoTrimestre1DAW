@@ -1,8 +1,12 @@
 import me.elordenador.practica6.Disco;
+import me.elordenador.practica6.ElementNotFoundException;
 import me.elordenador.practica6.Ordenador;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrdenadorTest {
@@ -19,6 +23,15 @@ public class OrdenadorTest {
         Ordenador.init();
     }
 
+
+    private class SaveOrdenador {
+        public String marca, modelo, procesador;
+        public boolean estado;
+        public int ram, tamDisco;
+        public Disco tipoDisco;
+    }
+
+    private ArrayList<SaveOrdenador> ordenadoresGuardados = new ArrayList<>();
     @Order(1)
     @Test
     public void addData() {
@@ -31,6 +44,16 @@ public class OrdenadorTest {
                                 for (Disco disco : tipoDiscos) {
                                     Ordenador ordenador = new Ordenador(marca, modelo, estado, ram, procesador, tamDisco, disco);
                                     ordenador.save();
+                                    SaveOrdenador ordenador1 = new SaveOrdenador();
+                                    ordenador1.marca = ordenador.getMarca();
+                                    ordenador1.modelo = ordenador.getModelo();
+                                    ordenador1.estado = ordenador.getEstado();
+                                    ordenador1.ram = ordenador.getRam();
+                                    ordenador1.procesador = ordenador.getProcesador();
+                                    ordenador1.tamDisco = ordenador.getTamDisco();
+                                    ordenador1.tipoDisco = ordenador.getTipoDisco();
+
+                                    ordenadoresGuardados.add(ordenador1);
                                 }
                             }
                         }
@@ -40,6 +63,25 @@ public class OrdenadorTest {
         }
 
     }
+
+    @Order(2)
+    @DisplayName("Validate data")
+    @Test
+    public void validateData() throws ElementNotFoundException {
+        for (int i = 0; i < ordenadoresGuardados.size(); i++) {
+            Ordenador ordenador = new Ordenador(i);
+            SaveOrdenador guardado = ordenadoresGuardados.get(i);
+            ordenador.load();
+            assertEquals(guardado.marca, ordenador.getMarca());
+            assertEquals(guardado.modelo, ordenador.getModelo());
+            assertEquals(guardado.estado, ordenador.getEstado());
+            assertEquals(guardado.ram, ordenador.getRam());
+            assertEquals(guardado.procesador, ordenador.getProcesador());
+            assertEquals(guardado.tamDisco, ordenador.getTamDisco());
+            assertEquals(guardado.tipoDisco, ordenador.getTipoDisco());
+        }
+    }
+
 
     @AfterAll
     public static void finish() {

@@ -34,7 +34,7 @@ public class OrdenadorTest {
     private ArrayList<SaveOrdenador> ordenadoresGuardados = new ArrayList<>();
     @Order(1)
     @Test
-    public void addData() {
+    public void testAddData() {
         for (String marca : marcas) {
             for (String modelo : modelos) {
                 for (boolean estado : estados) {
@@ -67,7 +67,7 @@ public class OrdenadorTest {
     @Order(2)
     @DisplayName("Validate data")
     @Test
-    public void validateData() throws ElementNotFoundException {
+    public void testValidateData() throws ElementNotFoundException {
         for (int i = 0; i < ordenadoresGuardados.size(); i++) {
             Ordenador ordenador = new Ordenador(i);
             SaveOrdenador guardado = ordenadoresGuardados.get(i);

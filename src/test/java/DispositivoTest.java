@@ -34,7 +34,7 @@ public class DispositivoTest {
 
     @Order(1)
     @Test
-    public void generateData() {
+    public void testGenerateData() {
         for (String marca : marcas) {
             for (String modelo : modelos) {
                 Dispositivo dispositivo = new Dispositivo(marca, modelo, true);
@@ -48,7 +48,7 @@ public class DispositivoTest {
 
     @Order(2)
     @Test
-    public void readData() {
+    public void testReadData() {
         int position = 0;
         boolean salida = false;
         while (!salida) {
@@ -68,7 +68,7 @@ public class DispositivoTest {
     }
     @Order(3)
     @Test
-    public void checkData() throws ElementNotFoundException {
+    public void testCheckData() throws ElementNotFoundException {
         int elementos = modeloTArrayList.size();
         for (int i = 0; i < elementos; i++) {
             int id = i + 1;
@@ -86,7 +86,7 @@ public class DispositivoTest {
 
     @Order(4)
     @Test
-    public void deleteData() {
+    public void testDeleteData() {
         int elementos = modeloTArrayList.size();
         for (int i = 0; i < elementos; i++) {
             int id = i + 1;
@@ -97,7 +97,7 @@ public class DispositivoTest {
 
     @Order(5)
     @Test
-    public void checkDataDoesNoLongerExists() {
+    public void testCheckDataDoesNoLongerExists() {
         int elementos = modeloTArrayList.size();
         for (int i = 0; i < elementos; i++) {
             int id = i + 1;

@@ -13,7 +13,7 @@ public class Ordenador extends Dispositivo {
     private static File file = new File("ordenadores.dat");
     private static RandomAccessFile randomAccessFile;
 
-    private int nBytesT = 174;
+    private static int nBytesT = 174;
     public Ordenador(String marca, String modelo, boolean estado, int ram, String procesador, int tamDisco, Disco disco) {
         super(marca, modelo, estado);
         this.ram = ram;
@@ -67,8 +67,6 @@ public class Ordenador extends Dispositivo {
 
     public void save() {
         try {
-
-            System.out.println("Saving ID: " + id);
             randomAccessFile.seek(nBytesT * id);
         } catch (IOException e) {
             System.out.println("El registro no existe, creando...");
@@ -120,8 +118,6 @@ public class Ordenador extends Dispositivo {
             }
 
             long posFinal = randomAccessFile.getFilePointer();
-
-            System.out.println("Escritos " + (posFinal - posIniF) + " bytes.");
         } catch (IOException ex) {
             System.err.print("NO hemos podido escribir la info");
         }
@@ -174,5 +170,16 @@ public class Ordenador extends Dispositivo {
             estado1 = "No funciona";
         }
         return "Marca: " + getMarca() + ", Modelo: " + getModelo() + ", Estado: " + getEstado() + ", RAM: " + ram + ", Procesador: " + procesador + ", Tamaño Disco: " + tamDisco + "Tipo Disco: " + tipoDisco.name();
+    }
+
+    public static int length() {
+        try {
+            randomAccessFile.seek(randomAccessFile.length() - nBytesT);
+            return randomAccessFile.readInt() + 1;
+        } catch (IOException e) {
+            System.err.println("Unable to get ID");
+
+            return 0;
+        }
     }
 }

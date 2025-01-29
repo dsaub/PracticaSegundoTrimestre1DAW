@@ -26,7 +26,7 @@ public class Impresora extends Dispositivo {
 
     private TipoImpresora tipo;
     private boolean color, escaner;
-    private int nBytesT = 118;
+    private static int nBytesT = 118;
     public Impresora(String marca, String modelo, boolean estado, TipoImpresora tipo, boolean color, boolean escaner) {
         super(marca, modelo, estado);
         this.tipo = tipo;
@@ -168,6 +168,20 @@ public class Impresora extends Dispositivo {
         }
         return "Marca: " + getMarca() + ", Modelo: " + getModelo() + ", Estado: " + estado1 + ", Tipo: " + tipo.name() + ", Color: " + color + ", Scanner: " + escaner;
     }
+
+    public static int length() {
+        try {
+            randomAccessFile.seek(randomAccessFile.length() - nBytesT);
+            return randomAccessFile.readInt() + 1;
+        } catch (IOException e) {
+            System.err.println("Unable to get ID");
+
+            return 0;
+        }
+    }
+
+
+
 
 
 }

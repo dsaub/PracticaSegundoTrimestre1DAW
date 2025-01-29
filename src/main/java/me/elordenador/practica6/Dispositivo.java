@@ -12,7 +12,7 @@ public class Dispositivo {
     private String marca, modelo;
     private boolean estado;
 
-    private int nBytesT = 106;
+    private static int nBytesT = 106;
 
     public static void init() {
         if (!file.exists()) {
@@ -194,6 +194,17 @@ public class Dispositivo {
             estado1 = "No funciona";
         }
         return "Marca: " + marca + ", Modelo: " + modelo + ", Estado: " + estado;
+    }
+
+    public static int length() {
+        try {
+            randomAccessFile.seek(randomAccessFile.length() - nBytesT);
+            return randomAccessFile.readInt() + 1;
+        } catch (IOException e) {
+            System.err.println("Unable to get ID");
+
+            return 0;
+        }
     }
 
 

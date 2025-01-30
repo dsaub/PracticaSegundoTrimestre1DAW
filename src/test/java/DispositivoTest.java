@@ -37,6 +37,7 @@ public class DispositivoTest {
     @Order(1)
     @Test
     public void testInitialize() {
+        Dispositivo.cleanup();
         Dispositivo.init();
     }
     @Order(2)

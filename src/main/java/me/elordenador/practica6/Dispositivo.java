@@ -62,6 +62,10 @@ public class Dispositivo {
 
     }
 
+    public static void cleanup() {
+        file.delete();
+    }
+
     public int getId() {
         return id;
     }

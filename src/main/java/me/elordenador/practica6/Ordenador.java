@@ -182,4 +182,8 @@ public class Ordenador extends Dispositivo {
             return 0;
         }
     }
+
+    public static void cleanup() {
+        file.delete();
+    }
 }

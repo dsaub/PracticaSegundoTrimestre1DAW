@@ -48,6 +48,7 @@ public class Dispositivo {
         this.marca = marca;
         this.modelo = modelo;
         this.estado = estado;
+        System.out.println("Device ID: " + id);
 
 
     }

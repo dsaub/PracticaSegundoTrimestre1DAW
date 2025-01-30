@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Practica6 {
 
     private static Scanner sc = new Scanner(System.in);
-    private static ArrayList<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+    private static ArrayList<Dispositivo> dispositivos;
     public static void main(String[] args) {
         cargarDatos();
         boolean salida = false;
@@ -50,7 +50,16 @@ public class Practica6 {
     }
 
     private static void borrarDispositivo() {
-        // TODO: Implement function
+        try {
+            System.out.print("ID Dispositivo: ");
+            int id = sc.nextInt(); sc.nextLine();
+
+            Dispositivo dispositivo = dispositivos.get(id);
+            dispositivo.delete();
+        } catch (NumberFormatException e) {
+            System.err.println("Error al leer el numero");
+            sc.nextLine();
+        }
     }
 
     private static void buscarDispositivo() {

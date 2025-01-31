@@ -47,7 +47,16 @@ public class Practica6 {
     }
 
     private static void cambiarEstadoDispositivo() {
-        // TODO: Implement function
+        try {
+            System.out.print("ID Dispositivo: ");
+            int id = sc.nextInt(); sc.nextLine();
+
+            Dispositivo dispositivo = dispositivos.get(id);
+            dispositivo.setEstado(!dispositivo.getEstado());
+        } catch (InputMismatchException e) {
+            System.err.println("Ha ocurrido un error");
+            sc.nextLine();
+        }
     }
 
     private static void borrarDispositivo() {

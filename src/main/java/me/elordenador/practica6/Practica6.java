@@ -1,6 +1,7 @@
 package me.elordenador.practica6;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -63,7 +64,25 @@ public class Practica6 {
     }
 
     private static void buscarDispositivo() {
-        // TODO: Implement function
+        try {
+            System.out.print("ID Dispositivo: ");
+            int id = sc.nextInt(); sc.nextLine();
+
+            Dispositivo dispositivo = dispositivos.get(id);
+
+            if (dispositivo instanceof Ordenador) {
+                Ordenador ordenador = (Ordenador) dispositivo;
+                System.out.println(" " + id + " | ORDENADOR | " + ordenador.toString());
+            } else if (dispositivo instanceof Impresora) {
+                Impresora impresora = (Impresora) dispositivo;
+                System.out.println(" " + id + " | IMPRESORA | " + impresora.toString());
+            } else {
+                System.out.println(" " + id + " | GENERICO | " + dispositivo.toString());
+            }
+        } catch (InputMismatchException e) {
+            System.err.println("Error validando los datos");
+            sc.nextLine();
+        }
     }
 
     private static void mostrarDispositivos() {

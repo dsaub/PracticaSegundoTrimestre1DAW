@@ -43,7 +43,62 @@ public class Practica6 {
     }
 
     private static void modificarDispositivo() {
-        // TODO: Implement function
+        try {
+            System.out.print("ID Dispositivo: ");
+            int id = sc.nextInt(); sc.nextLine();
+
+            Dispositivo dispositivo = dispositivos.get(id);
+            if (dispositivo instanceof Ordenador) {
+                modify((Ordenador) dispositivo);
+            } else if (dispositivo instanceof Impresora) {
+                modify((Impresora) dispositivo);
+            } else {
+                modify(dispositivo);
+            }
+        } catch (InputMismatchException e) {
+            System.err.println("Hubo un error");
+        }
+    }
+
+    private static void modify(Dispositivo dispositivo) {
+        try {
+            boolean salida = false;
+            while (!salida) {
+                System.out.println("¿Que deseas modificar?\n" +
+                        "  1. Marca\n" +
+                        "  2. Modelo\n" +
+                        "  3. Finalizar\n" +
+                        "  4. Descartar");
+                System.out.print("Seleccione");
+                int seleccion = sc.nextInt(); sc.nextLine();
+
+                if (seleccion == 1) {
+                    System.out.print("Marca: ");
+                    dispositivo.setMarca(sc.nextLine());
+                }
+                if (seleccion == 2) {
+                    System.out.print("Modelo: ");
+                    dispositivo.setModelo(sc.nextLine());
+                }
+                if (seleccion == 3) {
+                    dispositivo.save();
+                    cargarDatos();
+                    salida = true;
+                }
+                if (seleccion == 4) {
+                    cargarDatos();
+                    salida = true;
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.err.println("Hubo un error leyendo");
+        }
+    }
+
+    private static void modify(Impresora dispositivo) {
+    }
+
+    private static void modify(Ordenador dispositivo) {
     }
 
     private static void cambiarEstadoDispositivo() {

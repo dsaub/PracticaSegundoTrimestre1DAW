@@ -90,14 +90,12 @@ public class OrdenadorTest {
         }
     }
 
-
-    @AfterAll
-    public static void afterAll() {
-
+    @Order(4)
+    @DisplayName("Delete ordenadores.dat")
+    @Test
+    public void deleteOrdenadores() {
         File file = new File("ordenadores.dat");
         file.delete();
-
-
     }
 
 }

@@ -92,13 +92,124 @@ public class Practica6 {
             }
         } catch (InputMismatchException e) {
             System.err.println("Hubo un error leyendo");
+            sc.nextLine();
         }
     }
 
     private static void modify(Impresora dispositivo) {
+
+        try {
+            boolean salida = false;
+            while (!salida) {
+                System.out.println(dispositivo.toString());
+
+                System.out.println("¿Que desea modificar?\n" +
+                        "  1. Marca\n" +
+                        "  2. Modelo\n" +
+                        "  3. Tipo\n" +
+                        "  4. Alternar Color\n" +
+                        "  5. Alternar Escaner\n" +
+                        "  6. Guardar\n" +
+                        "  7. Descartar\n");
+
+                System.out.print("Opción: ");
+                int opcion = sc.nextInt(); sc.nextLine();
+                if (opcion == 1) {
+                    System.out.print("Marca: ");
+                    dispositivo.setMarca(sc.nextLine());
+                }
+                if (opcion == 2) {
+                    System.out.print("Modelo: ");
+                    dispositivo.setModelo(sc.nextLine());
+                }
+                if (opcion == 3) {
+                    System.out.print("Tipo (LASER, INY_TINTA, OTROS): ");
+                    dispositivo.setTipo(TipoImpresora.valueOf(sc.nextLine()));
+                }
+                if (opcion == 4) {
+                    dispositivo.setColor(!dispositivo.getColor());
+                }
+                if (opcion == 5) {
+                    dispositivo.setEscaner(!dispositivo.getEscaner());
+                }
+                if (opcion == 6) {
+                    dispositivo.save();
+                    cargarDatos();
+                    salida = true;
+                }
+                if (opcion == 7) {
+                    salida = true;
+                }
+            }
+
+        } catch (InputMismatchException e) {
+            System.err.println("Hubo un error leyendo el archivo");
+            sc.nextLine();
+        }
     }
 
     private static void modify(Ordenador dispositivo) {
+        try {
+            boolean salida = false;
+            while (!salida) {
+                System.out.println(dispositivo.toString());
+
+                System.out.println("¿Que desea modificar?\n" +
+                        "  1. Marca\n" +
+                        "  2. Modelo\n" +
+                        "  3. RAM\n" +
+                        "  4. Procesador\n" +
+                        "  5. Tamaño Disco\n" +
+                        "  6. Tipo Disco\n" +
+                        "  7. Alternar Estado\n" +
+                        "  8. Guardar\n" +
+                        "  9. Descartar");
+
+                System.out.print("Opción: ");
+                int opcion = sc.nextInt(); sc.nextLine();
+                if (opcion == 1) {
+                    System.out.print("Marca: ");
+                    dispositivo.setMarca(sc.nextLine());
+                }
+                if (opcion == 2) {
+                    System.out.print("Modelo: ");
+                    dispositivo.setModelo(sc.nextLine());
+                }
+                if (opcion == 3) {
+                    System.out.print("Cantidad de Memoria RAM: ");
+                    dispositivo.setRam(sc.nextInt());
+                    sc.nextLine();
+                }
+                if (opcion == 4) {
+                    System.out.print("Procesador: ");
+                    dispositivo.setProcesador(sc.nextLine());
+                }
+                if (opcion == 5) {
+                    System.out.print("Tamaño nuevo (En GB): ");
+                    dispositivo.setTamDisco(sc.nextInt());
+                    sc.nextLine();
+                }
+                if (opcion == 6) {
+                    System.out.println("Tipo Disco (HDD, SSD_SATA, SSD_NVME): ");
+                    dispositivo.setTipoDisco(Disco.valueOf(sc.nextLine()));
+                }
+                if (opcion == 7) {
+                    dispositivo.setEstado(!dispositivo.getEstado());
+                }
+                if (opcion == 8) {
+                    dispositivo.save();
+                    cargarDatos();
+                    salida = true;
+                }
+                if (opcion == 9) {
+                    salida = true;
+                }
+            }
+
+        } catch (InputMismatchException e) {
+            System.err.println("Hubo un error leyendo el archivo");
+            sc.nextLine();
+        }
     }
 
     private static void cambiarEstadoDispositivo() {

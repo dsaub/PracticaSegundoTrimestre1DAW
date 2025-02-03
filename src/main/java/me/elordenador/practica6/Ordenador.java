@@ -61,7 +61,7 @@ public class Ordenador extends Dispositivo {
         return procesador;
     }
 
-    public void setProcesacdor(String procesador) {
+    public void setProcesador(String procesador) {
         this.procesador = procesador;
     }
 

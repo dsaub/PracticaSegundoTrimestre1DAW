@@ -53,16 +53,32 @@ public class Ordenador extends Dispositivo {
         return ram;
     }
 
+    public void setRam(int ram) {
+        this.ram = ram;
+    }
+
     public String getProcesador() {
         return procesador;
+    }
+
+    public void setProcesacdor(String procesador) {
+        this.procesador = procesador;
     }
 
     public int getTamDisco() {
         return tamDisco;
     }
 
+    public void setTamDisco(int tamDisco) {
+        this.tamDisco = tamDisco;
+    }
+
     public Disco getTipoDisco() {
         return tipoDisco;
+    }
+
+    public void setTipoDisco(Disco tipoDisco) {
+        this.tipoDisco = tipoDisco;
     }
 
     public void save() {

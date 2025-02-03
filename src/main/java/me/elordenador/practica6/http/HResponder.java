@@ -18,5 +18,6 @@ public class HResponder {
     private static void createContext() {
         server.createContext("/", new RootHandler());
         server.createContext("/dispositivos", new DispositivosHandler());
+        server.createContext("/api/v1/getDispositivos", new DispositivosHandler());
     }
 }

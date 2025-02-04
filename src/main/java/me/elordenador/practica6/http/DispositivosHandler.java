@@ -1,6 +1,7 @@
 package me.elordenador.practica6.http;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import me.elordenador.practica6.Dispositivo;
@@ -37,7 +38,8 @@ public class DispositivosHandler implements HttpHandler {
 
             }
             Gson gson = new Gson();
-            String json = gson.toJson(dispositivos);
+            TypeToken<ArrayList<Dispositivo>> listOfMyClassObject = new TypeToken<ArrayList<Dispositivo>>() {};
+            String json = gson.toJson(dispositivos, listOfMyClassObject.getType());
             System.out.println(json);
             ex.sendResponseHeaders(200, json.length());
             OutputStream out = ex.getResponseBody();

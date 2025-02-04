@@ -1,6 +1,7 @@
 package me.elordenador.practica6.http;
 
 import com.sun.net.httpserver.HttpServer;
+import me.elordenador.practica6.Dispositivo;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -8,6 +9,7 @@ import java.net.InetSocketAddress;
 public class HResponder {
     private static HttpServer server;
     public static void main(String[] args) throws IOException {
+        Dispositivo.init();
         server = HttpServer.create(new InetSocketAddress(8000), 0);
         createContext();
 

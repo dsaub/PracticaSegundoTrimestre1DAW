@@ -29,6 +29,7 @@ public class Ordenador extends Dispositivo {
         }
 
     }
+
     public static void init() {
         if (!file.exists()) {
             try {

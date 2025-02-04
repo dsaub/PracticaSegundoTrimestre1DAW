@@ -32,17 +32,14 @@ public class OrdenadorTest {
         public Disco tipoDisco;
     }
 
-    private ArrayList<SaveOrdenador> ordenadoresGuardados = new ArrayList<>();
 
-    @Order(1)
+
     @Test
-    public void testInitialize() {
+    @DisplayName("Add and verify data")
+    public void testAddData() throws ElementNotFoundException {
         Ordenador.cleanup();
         Ordenador.init();
-    }
-    @Order(2)
-    @Test
-    public void testAddData() {
+        ArrayList<SaveOrdenador> ordenadoresGuardados = new ArrayList<>();
         for (String marca : marcas) {
             for (String modelo : modelos) {
                 for (boolean estado : estados) {
@@ -69,13 +66,6 @@ public class OrdenadorTest {
                 }
             }
         }
-
-    }
-
-    @Order(3)
-    @DisplayName("Validate data")
-    @Test
-    public void testValidateData() throws ElementNotFoundException {
         for (int i = 0; i < ordenadoresGuardados.size(); i++) {
             Ordenador ordenador = new Ordenador(i);
             SaveOrdenador guardado = ordenadoresGuardados.get(i);
@@ -88,14 +78,9 @@ public class OrdenadorTest {
             assertEquals(guardado.tamDisco, ordenador.getTamDisco());
             assertEquals(guardado.tipoDisco, ordenador.getTipoDisco());
         }
+
     }
 
-    @Order(4)
-    @DisplayName("Delete ordenadores.dat")
-    @Test
-    public void deleteOrdenadores() {
-        File file = new File("ordenadores.dat");
-        file.delete();
-    }
+
 
 }

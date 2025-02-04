@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.File;
 
+/**
+ * Clase para manejar dispositivos
+ */
 public class Dispositivo {
     private static File file = new File("dispositivos.dat");
     private static RandomAccessFile randomAccessFile;
@@ -14,6 +17,9 @@ public class Dispositivo {
 
     private static int nBytesT = 106;
 
+    /**
+     * Función usada para inicializar la conexión con el archivo, es necesario ejecutar esta antes de usar esta clase.
+     */
     public static void init() {
         if (!file.exists()) {
             try {
@@ -30,6 +36,12 @@ public class Dispositivo {
         }
     }
 
+    /**
+     * Constructor para crear un dispositivo
+     * @param marca La marca del dispositivo
+     * @param modelo El modelo del dispositivo
+     * @param estado Un boolean de que si funciona o no el dispositivo
+     */
     public Dispositivo(String marca, String modelo, boolean estado) {
 
         try {
@@ -52,6 +64,10 @@ public class Dispositivo {
 
     }
 
+    /**
+     * Constructor para buscar un dispositivo por ID
+     * @param id El ID del dispositivo
+     */
     public Dispositivo(int id) {
         this.id = id;
         this.marca = "";
@@ -61,38 +77,71 @@ public class Dispositivo {
 
     }
 
+    /**
+     * Elimina el archivo donde se almacenan los dispositivos
+     */
     public static void cleanup() {
         file.delete();
     }
 
+    /**
+     * Devuelve el ID del dispositivo
+     * @return El ID del dispositivo
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Devuelve la marca del dispositivo
+     * @return La Marca del dispositivo
+     */
     public String getMarca() {
         return marca;
     }
 
+    /**
+     * Devuelve el modelo del dispositivo
+     * @return El Modelo del dispositivo
+     */
     public String getModelo() {
         return modelo;
     }
 
+    /**
+     * Devuelve el estado del dispositivo
+     * @return SI funciona o no.
+     */
     public boolean getEstado() {
         return estado;
     }
 
+    /**
+     * Establece la marca del dispositivo
+     * @param marca la marca del dispositivo
+     */
     public void setMarca(String marca) {
         this.marca = marca;
     }
 
+    /**
+     * Establece el modelo del dispositivo
+     * @param modelo El Modelo del dispositivo
+     */
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
+    /** Establece el estado del dispositivo
+     * @param estado El Estado del dispositivo
+     */
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
+    /**
+     * Guarda el objeto en el archivo.
+     */
     public void save() {
         try {
             randomAccessFile.seek(108 * id);
@@ -128,6 +177,10 @@ public class Dispositivo {
 
     }
 
+    /**
+     * Carga el objeto del dispositivo desde el archivo.
+     * @throws ElementNotFoundException En caso de que no se encuentre el dispositivo
+     */
     public void load() throws ElementNotFoundException {
         // TODO: Implementar función load.
         try {
@@ -159,6 +212,9 @@ public class Dispositivo {
 
     }
 
+    /**
+     * Elimina el dispositivo
+     */
     public void delete() {
         // TODO: Implementar función delete.
         try {
@@ -190,6 +246,10 @@ public class Dispositivo {
         }
     }
 
+    /**
+     * Muestra un String bonito del dispositivo
+     * @return
+     */
     public String toString() {
         String estado1;
         if (estado) {

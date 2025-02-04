@@ -200,6 +200,10 @@ public class Dispositivo {
         return "Marca: " + marca + ", Modelo: " + modelo + ", Estado: " + estado;
     }
 
+    /**
+     * Devuelve la cantidad de elementos existentes
+     * @return La cantidad de elementos existentes
+     */
     public static int length() {
         try {
             randomAccessFile.seek(randomAccessFile.length() - nBytesT);

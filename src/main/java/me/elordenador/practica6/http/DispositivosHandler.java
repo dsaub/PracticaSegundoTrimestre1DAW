@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import me.elordenador.practica6.Dispositivo;
 import me.elordenador.practica6.ElementNotFoundException;
+import me.elordenador.practica6.Ordenador;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -31,6 +32,7 @@ public class DispositivosHandler implements HttpHandler {
                         OutputStream out = ex.getResponseBody();
                         out.write(response.getBytes());
                         out.close();
+                        return;
                     }
                 }
 
@@ -45,6 +47,33 @@ public class DispositivosHandler implements HttpHandler {
             OutputStream out = ex.getResponseBody();
             out.write(json.getBytes());
             out.close();
+        } else if (path.equals("/api/v1/getOrdenadores")) {
+            ArrayList<Ordenador> ordenadores = new ArrayList<Ordenador>();
+            for (int i = 0; i < Ordenador.length(); i++) {
+                Ordenador ordenador = new Ordenador(i);
+                try {
+                    ordenador.load();
+                } catch (ElementNotFoundException e) {
+                    if (!e.logicaldelete) {
+                        System.err.println("File is corrupt");
+                        String response = "{\"error\":\"File is corrupt\"}";
+                        ex.sendResponseHeaders(500, response.length());
+                        OutputStream out = ex.getResponseBody();
+                        out.write(response.getBytes());
+                        out.close();
+                        return;
+                    }
+                }
+
+                ordenadores.add(ordenador);
+                Gson gson = new Gson();
+                TypeToken<ArrayList<Ordenador>> type = new TypeToken<ArrayList<Ordenador>>() {};
+                String json = gson.toJson(ordenadores, type.getType());
+                ex.sendResponseHeaders(200,json.length());
+                OutputStream out = ex.getResponseBody();
+                out.write(json.getBytes());
+                out.close();
+            }
         } else {
             ex.sendResponseHeaders(200, path.length());
             OutputStream out = ex.getResponseBody();

@@ -43,6 +43,9 @@ public class DispositivosHandler implements HttpHandler {
             TypeToken<ArrayList<Dispositivo>> listOfMyClassObject = new TypeToken<ArrayList<Dispositivo>>() {};
             String json = gson.toJson(dispositivos, listOfMyClassObject.getType());
             System.out.println(json);
+
+            ex.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+            ex.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
             ex.sendResponseHeaders(200, json.length());
             OutputStream out = ex.getResponseBody();
             out.write(json.getBytes());

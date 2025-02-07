@@ -5,9 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * Clase para manejar las impresoras
+ * @author Daniel Sánchez Úbeda
+ * @version 1.0
+ */
 public class Impresora extends Dispositivo {
     private static  RandomAccessFile randomAccessFile;
 
+    /**
+     * Inicializa el archivo
+     */
     public static void init() {
         File file = new File("impresoras.dat");
         if (!file.exists()) {
@@ -27,6 +35,16 @@ public class Impresora extends Dispositivo {
     private TipoImpresora tipo;
     private boolean color, escaner;
     private static int nBytesT = 118;
+
+    /**
+     * Constructor para crear un objeto con información
+     * @param marca La marca de la impresora
+     * @param modelo El modelo de la impresora
+     * @param estado El estado de la impresora
+     * @param tipo El tipo de la impresora
+     * @param color Es de color?
+     * @param escaner Tiene escaner?
+     */
     public Impresora(String marca, String modelo, boolean estado, TipoImpresora tipo, boolean color, boolean escaner) {
         super(marca, modelo, estado);
         this.tipo = tipo;
@@ -41,34 +59,65 @@ public class Impresora extends Dispositivo {
         }
     }
 
+    /**
+     * Constructor para crear un objeto en base a información ya existente (usando un ID)
+     * @param id El ID de la impresora
+     */
     public Impresora(int id) {
         super(id);
     }
 
+    /**
+     * Devuelve el tipo de la impresora
+     * @return EL tipo de la impresora
+     */
     public TipoImpresora getTipo() {
         return tipo;
     }
 
+    /**
+     * Devuelve si la impresora es de color o no
+     * @return Si la impresora es de color o no
+     */
     public boolean getColor() {
         return color;
     }
 
+    /**
+     * Devuelve si la impresora posee escaner o no
+     * @return Si la impresora posee escaner o no
+     */
     public boolean getEscaner() {
         return escaner;
     }
 
+    /**
+     * Establece el tipo de la impresora
+     * @param tipo El tipo de la impresora
+     */
     public void setTipo(TipoImpresora tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     * Establece si la impresora es a color o no
+     * @param color Si la impresora es a color o no
+     */
     public void setColor(boolean color) {
         this.color = color;
     }
 
+    /**
+     * Establece si la impresora posee escaner
+     * @param escaner Si posee escaner o no
+     */
     public void setEscaner(boolean escaner) {
         this.escaner = escaner;
     }
 
+    /**
+     * Guarda el elemento en el archivo
+     */
     public void save() {
         long posIni, posFin, bytesEscritos;
         try {
@@ -122,6 +171,10 @@ public class Impresora extends Dispositivo {
         }
     }
 
+    /**
+     * Carga el elemento del archivo.
+     * @throws ElementNotFoundException
+     */
     public void load() throws ElementNotFoundException {
         long pos;
         try {
@@ -159,6 +212,10 @@ public class Impresora extends Dispositivo {
 
     }
 
+    /**
+     * Devuelve un String bonito
+     * @return El String bonito
+     */
     public String toString() {
         String estado1;
         if (getEstado()) {
@@ -169,6 +226,10 @@ public class Impresora extends Dispositivo {
         return "Marca: " + getMarca() + ", Modelo: " + getModelo() + ", Estado: " + estado1 + ", Tipo: " + tipo.name() + ", Color: " + color + ", Scanner: " + escaner;
     }
 
+    /**
+     * Devuelve la cantidad de elementos existentes
+     * @return La cantidad de elementos existentes
+     */
     public static int length() {
         try {
             randomAccessFile.seek(randomAccessFile.length() - nBytesT);

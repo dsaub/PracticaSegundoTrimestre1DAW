@@ -5,10 +5,19 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * Clase principal para manejarse por el programa
+ * @author Daniel Sánchez Úbeda
+ */
 public class Practica6 {
 
     private static Scanner sc = new Scanner(System.in);
     private static ArrayList<Dispositivo> dispositivos;
+
+    /**
+     * Función main, carga el menú principal
+     * @param args argumentos del programa (pasados por el usuario al ejecutarlo)
+     */
     public static void main(String[] args) {
         cargarDatos();
         boolean salida = false;
@@ -42,6 +51,9 @@ public class Practica6 {
 
     }
 
+    /**
+     * Metodo que abre el menú para modificar el dispositivo
+     */
     private static void modificarDispositivo() {
         try {
             System.out.print("ID Dispositivo: ");
@@ -60,6 +72,10 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Función que abre el menú para modificar un Dispositivo Genérico
+     * @param dispositivo El dispositivo a modificar
+     */
     private static void modify(Dispositivo dispositivo) {
         try {
             boolean salida = false;
@@ -96,6 +112,10 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Función que abre el menú para modificar una Impresora
+     * @param dispositivo La impresora a modificar
+     */
     private static void modify(Impresora dispositivo) {
 
         try {
@@ -148,6 +168,10 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Función para modificar un ordenador
+     * @param dispositivo El ordenador a modificar
+     */
     private static void modify(Ordenador dispositivo) {
         try {
             boolean salida = false;
@@ -212,6 +236,9 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Función para cambiar el estado del dispositivo (alterna de True a False o viceversa)
+     */
     private static void cambiarEstadoDispositivo() {
         try {
             System.out.print("ID Dispositivo: ");
@@ -225,6 +252,9 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Función para borrar un dispositivo
+     */
     private static void borrarDispositivo() {
         try {
             System.out.print("ID Dispositivo: ");
@@ -238,6 +268,9 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Función para buscar por ID un dispositivo
+     */
     private static void buscarDispositivo() {
         try {
             System.out.print("ID Dispositivo: ");
@@ -260,6 +293,9 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Función para mostrar los dispositivos
+     */
     private static void mostrarDispositivos() {
         for (int i = 0; i < dispositivos.size(); i++) {
             Dispositivo dispositivo = dispositivos.get(i);
@@ -268,13 +304,16 @@ public class Practica6 {
             } else if (dispositivo instanceof Impresora) {
                 System.out.println(" " + i + " | Impresora | " + dispositivo.toString());
             } else {
-                System.out.println(" " + i + " | " + dispositivo.toString());
+                System.out.println(" " + i + " | Generico | " + dispositivo.toString());
             }
 
 
         }
     }
 
+    /**
+     * Función para añadir un dispositivo
+     */
     private static void anadirDispositivo() {
         System.out.println("Que tipo de dispositivo: \n" +
                 "1. Dispositivo Generico\n" +
@@ -344,6 +383,9 @@ public class Practica6 {
         }
     }
 
+    /**
+     * Carga los datos en los archivos
+     */
     public static void cargarDatos() {
         dispositivos = new ArrayList<Dispositivo>();
         Dispositivo.init();
@@ -358,6 +400,8 @@ public class Practica6 {
             } catch (ElementNotFoundException e) {
                 if (!e.logicaldelete) {
                     System.err.println("Ha ocurrido un error");
+                    System.err.println("  El archivo (dispositivos.dat) esta corrupto");
+                    System.err.println("  Contacte con el desarrollador de este software si regenerar el archivo no ayuda");
                 }
             }
 
@@ -371,6 +415,8 @@ public class Practica6 {
             } catch (ElementNotFoundException e) {
                 if (!e.logicaldelete) {
                     System.err.println("Ha ocurrido un error");
+                    System.err.println("  El archivo (ordenadores.dat) esta corrupto");
+                    System.err.println("  Contacte con el desarrollador de este software si regenerar el archivo no ayuda");
                 }
             }
         }
@@ -383,6 +429,8 @@ public class Practica6 {
             } catch (ElementNotFoundException e) {
                 if (!e.logicaldelete) {
                     System.err.println("Ha ocurrido un error");
+                    System.err.println("  El archivo (impresoras.dat) esta corrupto");
+                    System.err.println("  Contacte con el desarrollador de este software si regenerar el archivo no ayuda");
                 }
             }
         }

@@ -7,6 +7,8 @@ import java.io.File;
 
 /**
  * Clase para manejar dispositivos
+ * @author Daniel Sánchez Úbeda
+ * @version 1.0
  */
 public class Dispositivo {
     private static File file = new File("dispositivos.dat");

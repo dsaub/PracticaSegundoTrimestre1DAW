@@ -148,6 +148,7 @@ public class Ordenador extends Dispositivo {
 
         }
         try {
+            // Comenzamos a guardar la info de vuelta al archivo
             long posIniF = randomAccessFile.getFilePointer();
 
             randomAccessFile.writeInt(id);
@@ -193,8 +194,11 @@ public class Ordenador extends Dispositivo {
             }
 
             long posFinal = randomAccessFile.getFilePointer();
+            // Finalizamos el proceso
         } catch (IOException ex) {
-            System.err.print("NO hemos podido escribir la info");
+            System.err.println("No hemos podido escribir la info.");
+            System.err.println("  Es posible que el archivo este corrupto");
+            System.err.println("  Contacte con el desarrollador de este software si regenerar el archivo no ayuda");
         }
 
     }
@@ -235,7 +239,9 @@ public class Ordenador extends Dispositivo {
             tipoDisco = Disco.valueOf(randomAccessFile.readUTF());
             randomAccessFile.seek(pos + 10);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Ha ocurrido un error cargando la información");
+            System.err.println("  Es posible que el archivo esté corrupto.");
+            System.err.println("  Contacte con el desarrollador de este software si regenerar el archivo no ayuda");
         }
 
 
@@ -264,7 +270,9 @@ public class Ordenador extends Dispositivo {
             randomAccessFile.seek(randomAccessFile.length() - nBytesT);
             return randomAccessFile.readInt() + 1;
         } catch (IOException e) {
-            System.err.println("Unable to get ID");
+            System.err.println("Ha ocurrido un error");
+            System.err.println("  Unable to get ID");
+            System.err.println("  Contacte con el desarrollador de este software si regenerar el archivo no ayuda");
 
             return 0;
         }

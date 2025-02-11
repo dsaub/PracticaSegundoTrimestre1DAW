@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="me.elordenador.practica6.gui.controllers.ErrorController"
-            prefHeight="400.0" prefWidth="600.0">
-    <children>
-        <VBox alignment="CENTER" spacing="10.0">
-            <children>
-                <ImageView fitHeight="128.0" fitWidth="128.0">
-                    <image>
-                        <Image url="@../img/warning.svg"/>
-                    </image>
-                </ImageView>
-                <Label fx:id="errorLabel" text="Ha ocurrido un error" style="-fx-font-size: 18px; -fx-text-fill: red;"/>
-            </children>
-        </VBox>
-    </children>
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.elordenador.practica6.gui.controllers.ErrorController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="128.0" prefWidth="128.0" VBox.vgrow="NEVER">
+         <children>
+            <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+               <image>
+                  <Image url="@img/warning.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="error" strokeType="OUTSIDE" strokeWidth="0.0" text="Ha ocurrido un error desconocido." />
+         </children>
+      </HBox>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#close" text="OK" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</VBox>

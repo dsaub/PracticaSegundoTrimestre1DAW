@@ -3,6 +3,7 @@ package me.elordenador.practica6.gui.controllers;
 import javafx.fxml.FXML;
 import me.elordenador.practica6.gui.Gui;
 import me.elordenador.practica6.gui.panels.AboutPanel;
+import me.elordenador.practica6.gui.panels.ErrorPanel;
 
 import java.io.IOException;
 
@@ -17,12 +18,12 @@ public class MainController {
     }
 
     @FXML
-    private void openAbout() {
+    private void openAbout() throws IOException {
         try {
             AboutPanel ap = new AboutPanel();
             ap.show();
         } catch (IOException e) {
-            System.err.println("Exception loading AboutPanel");
+            ErrorPanel panel = new ErrorPanel("Error abriendo AboutPanel: " + e.getMessage());
         }
 
     }

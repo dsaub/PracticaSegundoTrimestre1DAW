@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="me.elordenador.practica6.gui.controllers.ErrorController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <VBox alignment="CENTER" spacing="10.0">
+            <children>
+                <ImageView fitHeight="128.0" fitWidth="128.0">
+                    <image>
+                        <Image url="@../img/warning.svg"/>
+                    </image>
+                </ImageView>
+                <Label fx:id="errorLabel" text="Ha ocurrido un error" style="-fx-font-size: 18px; -fx-text-fill: red;"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

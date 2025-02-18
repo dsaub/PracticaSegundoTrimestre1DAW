@@ -217,7 +217,7 @@ public class Dispositivo {
     /**
      * Elimina el dispositivo
      */
-    public void delete() {
+    public void delete() throws IOException {
         // TODO: Implementar función delete.
         try {
             randomAccessFile.seek(id*108);

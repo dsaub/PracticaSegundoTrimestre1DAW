@@ -203,6 +203,11 @@ public class Ordenador extends Dispositivo {
 
     }
 
+    public void delete() throws IOException {
+        randomAccessFile.seek(id*nBytesT+115);
+        randomAccessFile.writeBoolean(true);
+    }
+
     /**
      * Carga los cambios
      * @throws ElementNotFoundException Si el elemento no existe

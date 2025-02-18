@@ -3,6 +3,7 @@ import me.elordenador.practica6.ElementNotFoundException;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,7 +71,7 @@ public class DispositivoTest {
 
     @Order(5)
     @Test
-    public void testDeleteData() {
+    public void testDeleteData() throws IOException {
         Dispositivo.cleanup();
         Dispositivo.init();
         Dispositivo disp = new Dispositivo("Model1", "Model2", true);

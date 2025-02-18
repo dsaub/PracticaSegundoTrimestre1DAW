@@ -1,5 +1,6 @@
 package me.elordenador.practica6;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -265,6 +266,8 @@ public class Practica6 {
         } catch (NumberFormatException e) {
             System.err.println("Error al leer el numero");
             sc.nextLine();
+        } catch (IOException e) {
+            System.err.println("Hubo un error eliminando el dispositivo");
         }
     }
 

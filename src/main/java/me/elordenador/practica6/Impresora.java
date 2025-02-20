@@ -241,6 +241,11 @@ public class Impresora extends Dispositivo {
         }
     }
 
+    public void delete() throws IOException {
+        randomAccessFile.seek(id * nBytesT + 105);
+        randomAccessFile.writeBoolean(true);
+    }
+
 
 
 

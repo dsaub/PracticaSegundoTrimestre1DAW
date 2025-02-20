@@ -204,7 +204,7 @@ public class Ordenador extends Dispositivo {
     }
 
     public void delete() throws IOException {
-        randomAccessFile.seek(id*nBytesT+115);
+        randomAccessFile.seek(id*nBytesT+105);
         randomAccessFile.writeBoolean(true);
     }
 
